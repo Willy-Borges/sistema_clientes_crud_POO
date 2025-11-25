@@ -6,37 +6,37 @@ Sistema completo de cadastro de clientes desenvolvido em PHP com Programação O
 
 ## 📁 Estrutura de Pastas
 
-crud-poo/
-│
-├── app/
-│ ├── Controllers/
-│ │ └── ClienteController.php # Controla regras de negócio e fluxo das operações
-│ ├── DAO/
-│ │ └── ClienteDAO.php # Acesso ao banco (insert, update, delete, select)
-│ ├── Database/
-│ │ └── Conexao.php # Retorna a conexão PDO com o MySQL
-│ ├── Models/
-│ │ └── Cliente.php # Classe que representa o cliente (atributos do objeto)
-│
-├── frontend/
-│ ├── css/
-│ │ └── style.css # Estilos do layout e formatação visual
-│ ├── img/ # Ícones usados nos botões e interface
-│ ├── js/
-│ │ ├── buttons.js # Lógica dos botões (novo, salvar, editar, limpar, listar)
-│ │ ├── masks.js # Máscaras de CPF, celular, data e CEP
-│ │ ├── pesquisar.js # Pesquisa com popup e seleção de resultados
-│ │ └── script.js # Regras gerais da interface e controle de estados
-│
-├── public/
-│ ├── index.html # Tela principal do sistema
-│ ├── salvar.php # Recebe dados do front e envia ao controller (insert/update)
-│ ├── pesquisar.php # Pesquisa cliente e retorna JSON para o front
-│ ├── excluir.php # Remove cliente pelo ID
-│ ├── listar.php # Retorna a lista completa de clientes
-│ └── editar.php # Usado para carregar e atualizar via controller
-│
-└── sistema_clientes_poo.sql # Banco de dados MySQL
+crud-poo/  
+│  
+├── app/  
+│ ├── Controllers/  
+│ │ └── ClienteController.php # Controla regras de negócio e fluxo das operações  
+│ ├── DAO/  
+│ │ └── ClienteDAO.php # Acesso ao banco (insert, update, delete, select)  
+│ ├── Database/  
+│ │ └── Conexao.php # Retorna a conexão PDO com o MySQL  
+│ ├── Models/  
+│ │ └── Cliente.php # Classe que representa o cliente (atributos do objeto)  
+│  
+├── frontend/  
+│ ├── css/  
+│ │ └── style.css # Estilos do layout e formatação visual  
+│ ├── img/ # Ícones usados nos botões e interface  
+│ ├── js/  
+│ │ ├── buttons.js # Lógica dos botões (novo, salvar, editar, limpar, listar)  
+│ │ ├── masks.js # Máscaras de CPF, celular, data e CEP  
+│ │ ├── pesquisar.js # Pesquisa com popup e seleção de resultados  
+│ │ └── script.js # Regras gerais da interface e controle de estados  
+│  
+├── public/  
+│ ├── index.html # Tela principal do sistema  
+│ ├── salvar.php # Recebe dados do front e envia ao controller (insert/update)  
+│ ├── pesquisar.php # Pesquisa cliente e retorna JSON para o front  
+│ ├── excluir.php # Remove cliente pelo ID  
+│ ├── listar.php # Retorna a lista completa de clientes  
+│ └── editar.php # Usado para carregar e atualizar via controller  
+│  
+└── sistema_clientes_poo.sql # Banco de dados MySQL  
 
 
 
