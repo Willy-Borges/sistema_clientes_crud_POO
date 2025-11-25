@@ -4,7 +4,7 @@ document.getElementById("btnPesquisar").onclick = function () {
     fd.append("codigo", document.getElementById("codigo").value.trim());
     fd.append("nome",   document.getElementById("nome").value.trim());
     fd.append("cpf",    document.getElementById("cpf").value.trim());
-    fd.append("cel",    document.getElementById("cel").value.trim());
+    fd.append("celular",document.getElementById("cel").value.trim());
     fd.append("email",  document.getElementById("email").value.trim());
 
     fetch("pesquisar.php", {

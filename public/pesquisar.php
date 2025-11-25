@@ -11,7 +11,7 @@ header("Content-Type: application/json");
 $codigo = $_POST['codigo'] ?? null;
 $nome = $_POST['nome'] ?? null;
 $cpf = $_POST['cpf'] ?? null;
-$cel = $_POST['cel'] ?? null;
+$celular = $_POST['celular'] ?? null;
 $email = $_POST['email'] ?? null;
 
 $ctrl = new ClienteController();
@@ -31,7 +31,7 @@ if (!empty($codigo)) {
 $filtros = [
     'nome' => $nome,
     'cpf'  => $cpf,
-    'cel'  => $cel,
+    'celular'  => $celular,
     'email'=> $email
 ];
 

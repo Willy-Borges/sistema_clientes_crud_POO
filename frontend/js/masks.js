@@ -85,3 +85,39 @@ document.getElementById("cel").addEventListener("input", function (e) {
     e.target.value = formatted;
 });
 
+
+//---------------------------------------------
+//  VIA CEP
+document.getElementById("cep").addEventListener("blur", function () {
+
+    const cep = this.value.replace(/\D/g, "");
+
+    
+    if (cep.length !== 8) return;
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(r => r.json())
+        .then(data => {
+
+            // CEP não encontrado
+            if (data.erro) {
+                alert("CEP não encontrado.");
+                document.getElementById("cidade").value = "";
+                document.getElementById("uf").value = "";
+                return;
+            }
+
+            // preencher cidade
+            if (data.localidade) {
+                document.getElementById("cidade").value = data.localidade;
+            }
+
+            // preencher UF
+            if (data.uf) {
+                document.getElementById("uf").value = data.uf;
+            }
+        })
+        .catch(() => {
+            alert("Erro ao consultar o CEP.");
+        });
+});

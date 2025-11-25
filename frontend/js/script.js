@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const codigo = document.getElementById("codigo");
     const nome = document.getElementById("nome");
+
+        nome.addEventListener("input", function () {
+            // permite letras, espaços, acentos e hífen; remove dígitos e outros símbolos indesejados
+            this.value = this.value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s'-]/g, "");
+        });
+
     const cpf = document.getElementById("cpf");
     const data_nascimento = document.getElementById("data_nascimento");
     const profissao = document.getElementById("profissao");
@@ -151,6 +157,99 @@ document.addEventListener("DOMContentLoaded", function () {
     function salvarCliente() {
         return new Promise((resolve, reject) => {
 
+
+         const nomeVal = nome.value.trim();
+            if (nomeVal === "") {
+                alert("Nome é obrigatório.");
+                nome.focus();
+                reject("Nome inválido");
+                return;
+            }
+            
+            if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/.test(nomeVal)) {
+                alert("Nome inválido. Use apenas letras e espaços.");
+                nome.focus();
+                reject("Nome inválido");
+                return;
+            }   
+
+
+            //validação CPF
+            const cpfVal = cpf.value.trim();
+
+            if (cpfVal === "") {
+                alert("CPF é obrigatório.");
+                cpf.focus();
+                return;
+            }
+
+            // remove máscara
+            const cpfNum = cpfVal.replace(/\D/g, "");
+
+            if (cpfNum.length !== 11) {
+                alert("CPF inválido. Deve ter 11 dígitos.");
+                cpf.focus();
+                return;
+            }
+
+            // --------------------
+            // validar CEP
+
+            const cepVal = cep.value.trim();
+
+            if (cepVal !== "") {
+                const cepNum = cepVal.replace(/\D/g, "");
+
+                if (cepNum.length !== 8) {
+                    alert("CEP inválido. Deve conter 8 dígitos.");
+                    cep.focus();
+                    return;
+                }
+            }
+
+            // -------------------------
+
+            // validar email
+            const emailVal = email.value.trim();
+
+            if (emailVal === "") {
+                alert("Email é obrigatório.");
+                email.focus();
+                return;
+            }
+
+            // padrão simples e seguro
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(emailVal)) {
+                alert("Email inválido. Digite um formato válido, ex: nome@dominio.com");
+                email.focus();
+                return;
+            }
+
+
+            // -------------------------
+
+            // validar celular
+            const celVal = cel.value.replace(/\D/g, "");
+
+            if (celVal === "") {
+                alert("Celular é obrigatório.");
+                cel.focus();
+                return;
+            }
+
+            // deve ter 11 dígitos: (99) 99999-9999
+            if (celVal.length !== 11) {
+                alert("Celular inválido. Deve conter 11 números.");
+                cel.focus();
+                return;
+            }
+
+
+            // -------------------------
+
+
             let fd = new FormData();
 
             fd.append("id", codigo.value.trim());
@@ -164,11 +263,12 @@ document.addEventListener("DOMContentLoaded", function () {
             fd.append("bairro", bairro.value.trim());
             fd.append("cidade", cidade.value.trim());
             fd.append("cep", cep.value.trim());
-            fd.append("cel", cel.value.trim());
+            fd.append("cel", cel.value.replace(/\D/g, ""));
             fd.append("email", email.value.trim());
             fd.append("uf", uf.value);
 
-            fetch("salvar.php", { method: "POST", body: fd })
+            fetch("/crud-poo/public/salvar.php", { method: "POST", body: fd })
+
                 .then(r => r.json())
                 .then(ret => {
                     alert(ret.mensagem);

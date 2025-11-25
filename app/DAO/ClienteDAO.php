@@ -151,8 +151,8 @@ class ClienteDAO
             $params[':cpf'] = '%' . $filtros['cpf'] . '%';
         }
         if (!empty($filtros['cel'])) {
-            $where[] = "celular LIKE :cel";
-            $params[':cel'] = '%' . $filtros['cel'] . '%';
+            $where[] = "celular LIKE :celular";
+            $params[':celular'] = '%' . preg_replace('/\D/', '', $filtros['cel']) . '%';
         }
         if (!empty($filtros['email'])) {
             $where[] = "email LIKE :email";
